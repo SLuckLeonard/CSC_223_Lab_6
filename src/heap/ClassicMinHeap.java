@@ -10,41 +10,65 @@ public class ClassicMinHeap<T> implements MinHeap<T>
     protected int           _size;
     @Override
     public void build(List<Double> keys, List<T> values) {
-        // TODO Auto-generated method stub
+      
+    	init(keys.size());
+    	
+    	_heap[1] = makeNode(keys.get(0), values.get(0));
 
     }
 
-    private void init(int size) {
+    @SuppressWarnings("unchecked")
+	private void init(int size) {
     	
     	 _heap =  new HeapNode[size];
-    	 //alkjsdfkksfkaljfdsakj
     	 
     }
     @Override
     public void insert(double key, T value) {
-        // TODO Auto-generated method stub
+        
+    	_heap[_size + 1] = new HeapNode<T>(key, value);
+    	
+    	_size++;
+    	
+    	swim(_size);
 
     }
     @Override
     public HeapNode<T> extractMin() {
         // TODO Auto-generated method stub
 
-        //if(_heap.isEmpty()) return null;
+        if(!isEmpty()) return null;
 
-        HeapNode<T> min = _heap[1];
-
-        HeapNode<T> last = _heap[_size - 1];
-
-        //_heap.set(1, last);
-
-        //sink(_heap.get(1));
+    	HeapNode<T> min = _heap[_size];
+       
+    	swap(1, _size);
+   
+        
+        sink(1);
+        
+        _heap[_size] = null;
 
         return min;
     }
+    
+    private void swap(int i, int j) {
+    	
+    	HeapNode<T> temp = _heap[i];
+    	
+    	_heap[i] = _heap[j];
+    	
+    	_heap[j] = temp;
+    	
+    }
+    
+    private HeapNode<T> makeNode(double key, T value) {
+    	
+    	return new HeapNode<T>(key, value);
+    }
     @Override
     public HeapNode<T> peekMin() {
-        // TODO Auto-generated method stub
-        //if(!_heap.isEmpty()) return _heap[1];
+        
+        if(!isEmpty()) return _heap[1];
 
         return null;
     }
@@ -60,38 +84,65 @@ public class ClassicMinHeap<T> implements MinHeap<T>
     @Override
     public void clear() {
 
-        //_heap.clear();
+    	_size = 0;
+    	
+        init(0);
 
     }
-
-    private void sink(HeapNode<T> node) {
-
-        // ask if its better to manipulate the keys and values or the nodes themselves
+    
+    private int smaller(int l, int r){
+    	
+    	if(_heap[l].compareTo(_heap[r]) < 0) return l;
+    	
+    	if(_heap[l].compareTo(_heap[r]) > 0) return r;
+    	
+    	return l;
     }
 
-    private HeapNode<T> left (HeapNode<T> node) { 
+    private void sink(int i) {
+    	
+    	int index = i;
+    	
+        while(left(index) != -1) {
+        	
+        	// get the smaller of the child nodes
+        	int smaller = smaller(left(index), right(index));
+        	
+        	if(_heap[smaller].compareTo(_heap[index]) > 0) break;
+        	
+        	swap(index, smaller);
+        	
+        	index = smaller;
+        	
+        }
+    }
+    
+    private void swim(int i) {
+    	
+    	while (i > 1 && _heap[i].compareTo(_heap[parent(i)]) < 0) {
+    		
+    		swap(i, parent(i));
+    		
+    	}
+    }
+    
+    private int parent(int i) {
+    	
+    	if(i % 2 == 0) return i / 2;
+    	
+    	return (i - 1) / 2;
+    }
 
-//        int index = _heap.indexOf(node) * 2;
-//
-//        if(index < _heap.size()) {
-//
-//            return _heap.get(index); 
-//        }
+    private int left (int l) { 
 
-        return null;}
+    	if(_size >= l * 2) return l * 2; 
 
-    private HeapNode<T> right(HeapNode<T> node){ 
+        return -1;}
 
-//        int index = (_heap.indexOf(node) * 2) + 1;
-//
-//        if(index < _heap.size()) {
-//
-//            return _heap.get(index); 
-//        }
+    private int right(int r){ 
 
-        return null;}
+    	if(_size >= (r * 2) + 1) return  (r * 2) + 1; 
 
-    //
-    // TODO
-    //
+        return -1;}
+
 }
