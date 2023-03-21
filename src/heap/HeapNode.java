@@ -7,7 +7,7 @@
  
 package heap;
 
-public class HeapNode<T> implements Comparable<T>
+public class HeapNode<T> implements Comparable<HeapNode<T>>
 {
 	public double _key;
 	public T      _value;
@@ -21,12 +21,14 @@ public class HeapNode<T> implements Comparable<T>
 	public String toString() { return Double.toString(_key); }
 
 	@Override
-	public int compareTo(Object o)
+	public int compareTo(HeapNode<T> o)
 	{
-		return 0;
+		if(this._key < o._key)
+			return -1;
 		
-		//
-        // TODO
-		//
+		if(this._key > o._key)
+			return 1;
+		 
+		return 0;
 	}
 }
