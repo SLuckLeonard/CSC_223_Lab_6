@@ -18,12 +18,12 @@ public class ListMinHeap<T> implements MinHeap<T>
 {
 	protected HeapNode<T>[] _heap;
 	protected int           _size;
-	
+
 	public ListMinHeap(int sz)
 	{
 		init(sz);
 	}
-	
+
 	public ListMinHeap() { this(DEFAULT_SIZE); }
 
 	@SuppressWarnings("unchecked")
@@ -37,7 +37,52 @@ public class ListMinHeap<T> implements MinHeap<T>
 	public boolean isEmpty() { return _size == 0; }
 	public int size() { return _size; }
 
-    //
-	// TODO
-	//
+	@Override
+	public void build(List<Double> keys, List<T> values) {
+		for(int i = 0; i < keys.size(); i++)
+		{
+			insert(keys.get(i), values.get(i));
+		}
+	}
+
+	@Override
+	public void insert(double key, T value) {
+		_heap[_size++] = new HeapNode<T>(key, value);
+	}
+
+	@Override
+	public HeapNode<T> extractMin() {
+		int indexOfMin = indexOfMin();
+		HeapNode<T> minNode = _heap[indexOfMin];
+		shift(indexOfMin);
+		return minNode;
+	}
+
+	@Override
+	public HeapNode<T> peekMin() {
+		int indexOfMin = indexOfMin();
+		if(indexOfMin < 0) return null;
+		return _heap[indexOfMin];
+	}
+	
+	private int indexOfMin()
+	{
+		HeapNode<T> min = _heap[0];
+		int index = -1;
+		
+		for(int i = 0; i < _size; i++)
+		{
+			HeapNode<T> cur = _heap[i];
+			if(min.compareTo(cur) > 0) min = cur;
+			index = i;
+		}
+		return index;
+	}
+	
+	private void shift(int from)
+	{
+		if(from == _size) return;
+		_heap[from] = _heap[++from];
+		shift(++from);
+	}
 }
