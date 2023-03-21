@@ -53,8 +53,10 @@ public class ListMinHeap<T> implements MinHeap<T>
 	@Override
 	public HeapNode<T> extractMin() {
 		int indexOfMin = indexOfMin();
+		if(indexOfMin < 0) return null;
 		HeapNode<T> minNode = _heap[indexOfMin];
 		shift(indexOfMin);
+		_size--;
 		return minNode;
 	}
 
@@ -64,25 +66,50 @@ public class ListMinHeap<T> implements MinHeap<T>
 		if(indexOfMin < 0) return null;
 		return _heap[indexOfMin];
 	}
-	
-	private int indexOfMin()
+
+	public int indexOfMin()
 	{
-		HeapNode<T> min = _heap[0];
-		int index = -1;
+		if(isEmpty()) return -1; 
 		
+		HeapNode<T> min = _heap[0];
+		int index = 0;
+
 		for(int i = 0; i < _size; i++)
 		{
 			HeapNode<T> cur = _heap[i];
-			if(min.compareTo(cur) > 0) min = cur;
-			index = i;
+			if(min.compareTo(cur) > 0)
+			{
+				min = cur;
+				index = i;
+			}
+
 		}
 		return index;
 	}
-	
+
 	private void shift(int from)
 	{
 		if(from == _size) return;
-		_heap[from] = _heap[++from];
-		shift(++from);
+		_heap[from++] = _heap[from];
+		shift(from);
+	}
+
+	public String toString()
+	{
+		String string = "";
+
+		string = string + "(";
+		for(int i = 0; i < _size; i++)
+		{	
+			string += (_heap[i]._key);
+			string += ", ";
+			string += (_heap[i]._value);
+			string += ", ";
+		}
+		if(string.length() > 2) string = string.substring(0, string.length() - 2);
+
+		string = string + ")";
+
+		return string;
 	}
 }
