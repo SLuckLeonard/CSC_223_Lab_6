@@ -27,7 +27,8 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
     public void build(List<Double> keys, List<T> values) {
         _size = keys.size();
         _heap = (HeapNode<T>[]) new HeapNode[_size];
-        for (int i = 0; i < _size; i++) {
+        for (int i = 0; i < _size; i++) 
+        {
             _heap[i] = new HeapNode<>(keys.get(i), values.get(i));
         }
         Arrays.sort(_heap);
@@ -37,7 +38,8 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
     public void insert(double key, T value) {
         int index = _size;
         HeapNode<T> node = new HeapNode<>(key, value);
-        while (index > 0 && node.compareTo(_heap[index - 1]) < 0) {
+        while (index > 0 && node.compareTo(_heap[index - 1]) < 0) 
+        {
             _heap[index] = _heap[index - 1];
             index--;
         }
@@ -47,11 +49,10 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 
     @Override
     public HeapNode<T> extractMin() {
-        if (isEmpty()) {
-            return null;
-        }
+        if (isEmpty()) {return null;}
         HeapNode<T> minNode = _heap[0];
-        for (int i = 1; i < _size; i++) {
+        for (int i = 1; i < _size; i++) 
+        {
             _heap[i - 1] = _heap[i];
         }
         _size--;
@@ -60,9 +61,7 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 
     @Override
     public HeapNode<T> peekMin() {
-        if (isEmpty()) {
-            return null;
-        }
+        if (isEmpty()) {return null;}
         return _heap[0];
     }
 
