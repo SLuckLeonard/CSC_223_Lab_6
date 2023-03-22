@@ -67,13 +67,13 @@ public class ListMinHeap<T> implements MinHeap<T>
 		return _heap[indexOfMin];
 	}
 
-	public int indexOfMin()
+	private int indexOfMin()
 	{
 		if(isEmpty()) return -1; 
 		
 		HeapNode<T> min = _heap[0];
 		int index = 0;
-
+		
 		for(int i = 0; i < _size; i++)
 		{
 			HeapNode<T> cur = _heap[i];
@@ -82,14 +82,13 @@ public class ListMinHeap<T> implements MinHeap<T>
 				min = cur;
 				index = i;
 			}
-
 		}
 		return index;
 	}
 
 	private void shift(int from)
 	{
-		if(from == _size) return;
+		if(from == _size - 1) return;
 		_heap[from++] = _heap[from];
 		shift(from);
 	}

@@ -18,17 +18,17 @@ class ListMinHeapTest extends MinHeapTest
 	@Test
 	void test_extractMin()
 	{
-//		MinHeap<Integer> heap = new ListMinHeap<Integer>();
-//
-//		extractMinSortedTest(heap);
-//		
-//		heap = new ListMinHeap<Integer>();
-//		
-//		extractMinShuffledTest(heap);
-//		
-//		heap = new ListMinHeap<Integer>();
-//
-//		extractMinReverseTest(heap);
+		MinHeap<Integer> heap = new ListMinHeap<Integer>();
+
+		extractMinSortedTest(heap);
+		
+		heap = new ListMinHeap<Integer>();
+		
+		extractMinShuffledTest(heap);
+		
+		heap = new ListMinHeap<Integer>();
+
+		extractMinReverseTest(heap);
 	}
 	
 	@Test
@@ -78,5 +78,4 @@ class ListMinHeapTest extends MinHeapTest
 //		assertTrue(heap.isEmpty());
 //		assertEquals(0, heap.size());
 	}
-
 }
