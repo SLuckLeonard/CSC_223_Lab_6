@@ -66,18 +66,12 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
     }
 
     @Override
-    public boolean isEmpty() {
-        return _size == 0;
-    }
+    public boolean isEmpty() {return _size == 0;}
 
     @Override
-    public int size() {
-        return _size;
-    }
+    public int size() {return _size;}
 
     @Override
-    public void clear() {
-        init(_heap.length);
-    }
+    public void clear() {init(_heap.length);}
 
 }
