@@ -39,9 +39,11 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void build(List<Double> keys, List<T> values) {
+
 		
 		init(keys.size());
-		for(int i = 0; i < keys.size(); i++) {
+		for(int i = 0; i < keys.size(); i++)
+		{
 			insert(keys.get(i), values.get(i));
 		}
 	}
@@ -49,9 +51,8 @@ public class ListMinHeap<T> implements MinHeap<T>
 	@Override
 	public void insert(double key, T value) {
 
-		_heap[_size + 1] = new HeapNode<T>(key, value); 
-		
-		_size++;
+
+		_heap[_size++] = new HeapNode<T>(key, value);
 
 	}
 
@@ -60,54 +61,71 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 		if(!isEmpty()) {
 
-			HeapNode<T> min = _heap[1];
-			
-			int index = 0;
-			
-			// find the minimum and its index
-			for(int i = 0; i <= _size; i++) {
-
-				if(min.compareTo(_heap[i]) > 0) {
-					
-					min = _heap[i];
-					
-					index = i;
-				}
-				
-			}
-			
-			// slide everything down 1 from where the minimum was on to the end
-			for(int i = index; i < _size; i++) { _heap[i] = _heap[i + 1]; }
-			
-			_heap[_size] = null;
-			
-			_size--;
-			
-			return min;
+		
+		int indexOfMin = indexOfMin();
+		if(indexOfMin < 0) return null;
+		HeapNode<T> minNode = _heap[indexOfMin];
+		shift(indexOfMin);
+		_size--;
+		
+		return minNode;
+		
 		}
-
+		
 		return null;
+
 	}
 
 	@Override
 	public HeapNode<T> peekMin() {
-		
-		if(!isEmpty()) {
 
-			HeapNode<T> min = _heap[1];
-			
-			// find the minimum
-			for(int i = 0; i <= _size; i++) {
-
-				if(min.compareTo(_heap[i]) > 0) {
-					
-					min = _heap[i];	
-				}	
-			}
-			return min;
-		}
-
-		return null;
+		int indexOfMin = indexOfMin();
+		if(indexOfMin < 0) return null;
+		return _heap[indexOfMin];
 	}
 
+	private int indexOfMin()
+	{
+		if(isEmpty()) return -1; 
+		
+		HeapNode<T> min = _heap[0];
+		int index = 0;
+		
+		for(int i = 0; i < _size; i++)
+		{
+			HeapNode<T> cur = _heap[i];
+			if(min.compareTo(cur) > 0)
+			{
+				min = cur;
+				index = i;
+			}
+		}
+		return index;
+	}
+
+	private void shift(int from)
+	{
+		if(from == _size - 1) return;
+		_heap[from++] = _heap[from];
+		shift(from);
+	}
+
+	public String toString()
+	{
+		String string = "";
+
+		string = string + "(";
+		for(int i = 0; i < _size; i++)
+		{	
+			string += (_heap[i]._key);
+			string += ", ";
+			string += (_heap[i]._value);
+			string += ", ";
+		}
+		if(string.length() > 2) string = string.substring(0, string.length() - 2);
+
+		string = string + ")";
+
+		return string;
+	}
 }
