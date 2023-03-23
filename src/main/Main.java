@@ -28,15 +28,17 @@ public class Main
 		for (MinHeap<Integer> heap : heaps)
 		{
 			System.out.println(heap.getClass() + " Build Heap");
-
-            //
-            // TODO: timing code
-			// 
-			// You are strongly advised to create support methods for building a shuffled list, etc.
-			//
-
+			
+			Timer timer = new Timer();
+			timer.start();
+			
+			// TODO
+			
+			timer.stop();
+			System.out.println(timer.toString());
+			timer.reset();
+			
 			System.out.println();
-
 			heap.clear();
 		}
 	}
