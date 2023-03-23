@@ -39,8 +39,6 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void build(List<Double> keys, List<T> values) {
-
-		
 		init(keys.size());
 		for(int i = 0; i < keys.size(); i++)
 		{
@@ -50,37 +48,29 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void insert(double key, T value) {
-
-
 		_heap[_size++] = new HeapNode<T>(key, value);
 
 	}
 
 	@Override
 	public HeapNode<T> extractMin() {
+		if(isEmpty()) return null;
 
-		if(!isEmpty()) {
-
-		
 		int indexOfMin = indexOfMin();
 		if(indexOfMin < 0) return null;
+		
 		HeapNode<T> minNode = _heap[indexOfMin];
 		shift(indexOfMin);
 		_size--;
 		
 		return minNode;
-		
-		}
-		
-		return null;
-
 	}
 
 	@Override
 	public HeapNode<T> peekMin() {
-
 		int indexOfMin = indexOfMin();
 		if(indexOfMin < 0) return null;
+		
 		return _heap[indexOfMin];
 	}
 
