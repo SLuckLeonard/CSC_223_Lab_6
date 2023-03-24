@@ -73,5 +73,7 @@ public class SortedListMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 
     @Override
     public void clear() {init(_heap.length);}
+    
+    public String name() { return "SortedListMinHeap"; }
 
 }

@@ -93,5 +93,7 @@ public class ClassicMinHeap<T> implements MinHeap<T> {
     public boolean isEmpty() {return _size == 0;}
 
     public int size() {return _size;}
+    
+    public String name() { return "ClassicMinHeap"; }
 
 }

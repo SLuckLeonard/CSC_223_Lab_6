@@ -19,36 +19,43 @@ public class Main
 		//
 		// All heaps we are testing
 		List<MinHeap<Integer>> heaps = new ArrayList<MinHeap<Integer>>();
-		heaps.add(new ListMinHeap<Integer>());
-		heaps.add(new SortedListMinHeap<Integer>());
 		heaps.add(new ClassicMinHeap<Integer>());
+		heaps.add(new SortedListMinHeap<Integer>());
+		heaps.add(new ListMinHeap<Integer>());
 
 		//
 		// Execute the build process over all the heaps
 		for (MinHeap<Integer> heap : heaps)
 		{
-			System.out.println(heap.getClass() + " Build Heap");
 			
-			List<Double> keyList = keyList(ELEMENT_COUNT[0]);
-			List<Integer> valueList = valueList(ELEMENT_COUNT[0]);
-			
-			Timer timer = new Timer();
-			timer.start();
-			
-			heap.build(keyList, valueList);
-			
-			timer.stop();
-			System.out.println(timer.toString());
-			timer.reset();
-			
-			timer.start();
-			heap.extractMin();
-			timer.stop();
-			System.out.println(timer.toString());
-			timer.reset();
-			
-			System.out.println();
-			heap.clear();
+			for(int i : ELEMENT_COUNT){
+				
+				System.out.println(heap.getClass() + "Size " + i 
+													+ " Build Heap");
+				
+				List<Double> keyList = keyList(i);
+				List<Integer> valueList = valueList(i);
+				
+				Timer timer = new Timer();
+				timer.start();
+				
+				heap.build(keyList, valueList);
+				
+				timer.stop();
+				System.out.println(timer.toString());
+				timer.reset();
+				
+				System.out.println("Starting extractMin Timer");
+				timer.start();
+				heap.extractMin();
+				timer.stop();
+				System.out.println(timer.toString());
+				timer.reset();
+				
+				System.out.println();
+				heap.clear();
+				
+			}
 		}
 	}
 	

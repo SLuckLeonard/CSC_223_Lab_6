@@ -133,4 +133,6 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 		return string;
 	}
+	
+	public String name() { return "ListMinHeap"; }
 }
