@@ -87,8 +87,7 @@ public class ClassicMinHeap<T> implements MinHeap<T> {
      */
     
     private boolean greater(int i, int j) {
-    	// If the difference is greater than the tolerance value, return true (i.e., i is greater than j)
-    	// Otherwise, return false (i.e., i is not greater than j)
+    	// If the difference is greater than the tolerance value, return true
         final double TOLERANCE = 0.00001;
         return _heap[i]._key - _heap[j]._key > TOLERANCE;
     }
