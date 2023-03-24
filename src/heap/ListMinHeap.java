@@ -1,12 +1,27 @@
 /**
- * Write a succinct, meaningful description of the class here. You should avoid wordiness    
- * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
- * the html tag for a new paragraph.
- *
- * <p>Bugs: (a list of bugs and / or other problems)
- *
- * @author <your name>
- * @date   <date of completion>
+ *   ________________________________________
+ *  |			|			|				|
+ *	|	#elems	|	Build	|	ExtractMin	|
+ *  |___________|___________|_______________|
+ *  |			|			|				|
+ * 	|	10000	|  ######## |    ########   |
+ * 	|	20000  	|  ######## |    ########   |
+ * 	|	40000  	|  ######## |    ########   |		
+ * 	|	80000  	|  ######## |    ########   |			
+ * 	|	160000 	|  ######## |    ########   |		
+ * 	|	320000 	|  ######## |    ########   |
+ * 	|	640000 	|  ######## |    ########   |
+ * 	|	1280000	|  ######## |    ########   |
+ * 	|	2560000	|  ######## |    ########   |
+ * 	|	5120000	|  ######## |    ########   |
+ * 	|___________|___________|_______________|
+ *	|			|			|				|
+ *	|Efficiency |    O(n)   |      O(n)     |
+ *  |___________|___________|_______________|
+ * 					
+ *\
+ * @author <Caden Parry>
+ * @date   <03/24/2023>
  */
 
 package heap;
