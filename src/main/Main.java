@@ -19,9 +19,10 @@ public class Main
 		//
 		// All heaps we are testing
 		List<MinHeap<Integer>> heaps = new ArrayList<MinHeap<Integer>>();
+		heaps.add(new ListMinHeap<Integer>());
 		heaps.add(new ClassicMinHeap<Integer>());
 		heaps.add(new SortedListMinHeap<Integer>());
-		heaps.add(new ListMinHeap<Integer>());
+		
 
 		//
 		// Execute the build process over all the heaps
