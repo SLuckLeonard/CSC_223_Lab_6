@@ -32,7 +32,7 @@ public class Main
 				
 				System.out.println(heap.getClass() + "Size " + i 
 													+ " Build Heap");
-				// helloi
+				// hello
 				List<Double> keyList = keyList(i);
 				List<Integer> valueList = valueList(i);
 				
