@@ -110,9 +110,14 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	private void shift(int from)
 	{
-		if(from == _size - 1) return;
-		_heap[from] = _heap[from + 1];
-		shift(from + 1);
+		for (; from < _size - 1; from++)
+		{
+			_heap[from] = _heap[from + 1];
+		}
+		
+//		if(from == _size - 1) return;
+//		_heap[from] = _heap[from + 1];
+//		shift(from + 1);
 	}
 
 	public String toString()
