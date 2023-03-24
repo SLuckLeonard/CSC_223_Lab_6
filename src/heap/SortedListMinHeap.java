@@ -18,8 +18,14 @@
  *	|			|			 |				 |
  *	|Efficiency |     O(n)   |      O(n)     |
  *  |___________|_____ ______|_______________|
- * 					
- */
+ * 		
+ *  This class constructs a min heap as a sorted array
+ * <Bugs> None have been detected
+ * @author <Sam Luck-LEonardr>
+ * @date <03-24-23>
+ * 				
+ */			
+ 
 
 package heap;
 
