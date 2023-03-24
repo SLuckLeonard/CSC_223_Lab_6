@@ -108,9 +108,18 @@ public class ClassicMinHeap<T> implements MinHeap<T> {
         }
     }
 
+    /*
+     * Determines whether the element at index i is greater than the element at index j.
+	 * Uses a tolerance value to account for potential rounding errors when comparing double values.
+     * 
+     */
+    
     private boolean greater(int i, int j) {
-        return _heap[i]._key > _heap[j]._key;
+    	// If the difference is greater than the tolerance value, return true
+        final double TOLERANCE = 0.00001;
+        return _heap[i]._key - _heap[j]._key > TOLERANCE;
     }
+
 
     private void swap(int i, int j) {
         HeapNode<T> temp = _heap[i];
