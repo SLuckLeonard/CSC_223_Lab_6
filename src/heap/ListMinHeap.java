@@ -5,8 +5,8 @@
  *  |___________|____________|_______________|
  *  |			|			 |				 |
  * 	|	10000	| 00:00:00.2 |   00:00:00.2  |
- * 	|	20000  	| 00:00:00.2 |   00:00:00.2  |
- * 	|	40000  	| 00:00:00.2 |   00:00:00.2  |
+ * 	|	20000  	| 00:00:00.5 |   00:00:00.2  |
+ * 	|	40000  	| 00:00:00.11 |   00:00:00.4  |
  * 	|	80000  	| 00:00:00.2 |   00:00:00.2  |
  * 	|	160000 	| 00:00:00.2 |   00:00:00.2  |
  * 	|	320000 	| 00:00:00.2 |   00:00:00.2  |
@@ -54,7 +54,7 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void build(List<Double> keys, List<T> values) {
-		init(keys.size());
+		init(keys.size() + 1);
 		for(int i = 0; i < keys.size(); i++)
 		{
 			insert(keys.get(i), values.get(i));
@@ -111,8 +111,8 @@ public class ListMinHeap<T> implements MinHeap<T>
 	private void shift(int from)
 	{
 		if(from == _size - 1) return;
-		_heap[from++] = _heap[from];
-		shift(from);
+		_heap[from] = _heap[from + 1];
+		shift(from + 1);
 	}
 
 	public String toString()
@@ -133,6 +133,4 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 		return string;
 	}
-	
-	public String name() { return "ListMinHeap"; }
 }
