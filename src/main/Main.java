@@ -29,11 +29,20 @@ public class Main
 		{
 			System.out.println(heap.getClass() + " Build Heap");
 			
+			List<Double> keyList = keyList(ELEMENT_COUNT[0]);
+			List<Integer> valueList = valueList(ELEMENT_COUNT[0]);
+			
 			Timer timer = new Timer();
 			timer.start();
 			
-			// TODO
+			heap.build(keyList, valueList);
 			
+			timer.stop();
+			System.out.println(timer.toString());
+			timer.reset();
+			
+			timer.start();
+			heap.extractMin();
 			timer.stop();
 			System.out.println(timer.toString());
 			timer.reset();
@@ -41,5 +50,39 @@ public class Main
 			System.out.println();
 			heap.clear();
 		}
+	}
+	
+	private static List<Double> keyList(int numElems)
+	{
+		List<Double> keys = new ArrayList<Double>();
+		
+		final int LOW = 0;    // included value
+		final int HIGH = numElems; // included value
+		
+		for (int i = HIGH; i >= LOW; i--)
+		{
+			keys.add((double)i);
+		}
+		
+		Collections.shuffle(keys);
+		
+		return keys;
+	}
+	
+	private static List<Integer> valueList(int numElems)
+	{
+		List<Integer> values = new ArrayList<Integer>();
+		
+		final int LOW = 0;    // included value
+		final int HIGH = numElems; // included value
+		
+		for (int i = HIGH; i >= LOW; i--)
+		{
+			values.add(i);
+		}
+		
+		Collections.shuffle(values);
+		
+		return values;
 	}
 }
