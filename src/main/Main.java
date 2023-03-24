@@ -29,24 +29,35 @@ public class Main
 		{
 			System.out.println(heap.getClass() + " Build Heap");
 			
-			List<Double> keyList = keyList(ELEMENT_COUNT[0]);
-			List<Integer> valueList = valueList(ELEMENT_COUNT[0]);
+			List<Double> keyList = keyList(ELEMENT_COUNT[3]);
+			List<Integer> valueList = valueList(ELEMENT_COUNT[3]);
 			
+			// create and start
 			Timer timer = new Timer();
 			timer.start();
 			
-			heap.build(keyList, valueList);
+				// operation
+				heap.build(keyList, valueList);
 			
+			// stop
 			timer.stop();
-			System.out.println(timer.toString());
-			timer.reset();
 			
+				// print results
+				System.out.println(timer.toString());
+				
+			// reset and start
+			timer.reset();
 			timer.start();
-			heap.extractMin();
+				
+				// operation
+				heap.extractMin();
+				
+			//stop, print, reset
 			timer.stop();
 			System.out.println(timer.toString());
 			timer.reset();
 			
+			//clear
 			System.out.println();
 			heap.clear();
 		}
@@ -80,8 +91,6 @@ public class Main
 		{
 			values.add(i);
 		}
-		
-		Collections.shuffle(values);
 		
 		return values;
 	}
